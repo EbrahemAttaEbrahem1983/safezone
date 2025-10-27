@@ -316,32 +316,35 @@ class _ActionTileState extends State<_ActionTile> {
               ],
             ),
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  widget.icon,
-                  size: _iconSize,
-                  color: Colors.white, // نص + ايقونات بيضاء كما طلبت
-                  fill: _fill,
-                  weight: _weight,
-                  grade: _grade,
-                  opticalSize: _optical,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  widget.label,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 16,
-                    height: 1.05,
-                  ),
-                ),
-              ],
-            ),
-          ),
+           // داخل build() في _ActionTileState
+child: Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    Icon(
+      widget.icon,
+      size: 52,
+      color: Colors.white,
+      // لو بتستعمل material_symbols_icons تقدر تسيب القيم دي:
+      fill: 1.0,
+      weight: 650,
+      grade: 100,
+      opticalSize: 48,
+    ),
+    const SizedBox(height: 12),
+    Text(
+      widget.label,
+      textAlign: TextAlign.center,
+      style: const TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.w800,
+        fontSize: 16,
+        height: 1.05,
+      ),
+    ),
+  ],
+),
+   ),
         ),
       ),
     );

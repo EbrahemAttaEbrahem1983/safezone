@@ -1,6 +1,5 @@
-// lib/core/router/app_pages.dart
 import 'package:get/get.dart';
-import 'package:safe_zone/core/rbac/roles.dart'; // الموحد
+import 'package:safe_zone/auth/login_view.dart';
 import 'package:safe_zone/core/ui/forbidden_view.dart';
 
 import '../../dashboard/dashboard_bindings.dart';
@@ -9,49 +8,43 @@ import '../../dashboard/views/dashboard_root.dart';
 import '../../units/bindings.dart';
 import '../../units/views/units_tabs_root.dart';
 
-// شاشة تمام الملاك
 import '../../owners/views/owners_tabs_root.dart';
 
-// Guard & RBAC controller
 import '../../auth/rbac_guard.dart';
 import '../../auth/rbac_controller.dart';
-
+import 'package:safe_zone/core/rbac/roles.dart';
 import 'route_names.dart';
-
-import 'route_names.dart';
-
-// صفحة محظور بسيطة
- 
 
 class AppPages {
   AppPages._();
 
-  static const initial = R.root;
+  // ابدأ باللوجين
+  static const initial = R.login;
 
   static final pages = <GetPage>[
     GetPage(
-      name: R.root,
+      name: R.login,
+      page: () => LoginView(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: R.dashboard,
       page: () => const DashboardRoot(),
       binding: DashboardBindings(),
+      transition: Transition.fadeIn,
     ),
-
-    // مثال: حماية صفحة الوحدات (تحتاج Supervisor أو أعلى)
     GetPage(
       name: R.units,
       page: () => const UnitsTabsRoot(),
       binding: UnitsBinding(),
       middlewares: [
-        RoleGuard(Role.supervisor), // ستحول المستخدم إلى /forbidden إن لم يكن مصرحًا
+        RoleGuard(Role.supervisor), // الحد الأدنى للدور
       ],
     ),
-
     GetPage(
       name: R.ownersArrival,
       page: () => const OwnersTabsRoot(),
-      // binding: OwnersBinding(), // أضف Binding لو عندك
     ),
-
-    // صفحة محظور (Forbidden)
     GetPage(
       name: R.forbidden,
       page: () => const ForbiddenView(),

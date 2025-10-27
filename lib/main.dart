@@ -31,7 +31,7 @@ Future<void> main() async {
   Get.put(RBACController());
 
   // للتطوير فقط (اختياري)
-  await Get.find<RBACController>().setRole(Role.admin);
+  // await Get.find<RBACController>().setRole(Role.admin);
 
   // تأكيد اللغة = لغة الجهاز
   Get.find<LocaleController>().setSystem();

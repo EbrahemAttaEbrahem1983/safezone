@@ -1,7 +1,9 @@
-// lib/core/router/route_names.dart
 class R {
-  static const root = '/';
-  static const units = '/units';
+  static const login         = '/login';
+  static const dashboard     = '/dashboard';
+
+  static const root          = '/';               // لو محتاجه لسبب ما
+  static const units         = '/units';
   static const ownersArrival = '/owners_arrival';
-  static const forbidden = '/forbidden';
+  static const forbidden     = '/forbidden';
 }

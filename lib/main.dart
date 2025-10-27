@@ -10,9 +10,16 @@ import 'owners/database/owners_schema.dart';
 import 'core/router/app_pages.dart';
 import 'core/theme/theme_controller.dart';
 import 'core/locale/locale_controller.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // ✅ تشغيل Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   await GetStorage.init();
   await UnitsDatabase.instance.init();
